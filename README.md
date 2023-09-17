@@ -1,2 +1,2 @@
-# Notes App
-Simple notes app using Vue js
+# Translator App
+Simple translator app using Vue js
