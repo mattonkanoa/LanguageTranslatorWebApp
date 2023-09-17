@@ -1,2 +1,2 @@
 # Notes App
-Simple notes app using Vue js dude
+Simple notes app using Vue js
