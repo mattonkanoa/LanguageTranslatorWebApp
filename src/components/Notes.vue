@@ -14,7 +14,7 @@
   })
 
   onMounted(() => {
-    notes.value = getStorageItem('notes')
+    notes.value = getStorageItem('notes') || []
   });
 
   const addNote = () => {

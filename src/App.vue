@@ -3,8 +3,7 @@
 </script>
 
 <template>
-  <!-- <Notes></Notes> -->
-  <text>Yurrrrrr Kai</text>
+  <Notes></Notes>
 </template>
 
 <style>
