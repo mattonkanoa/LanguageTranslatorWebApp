@@ -26,7 +26,7 @@
     })
 
     setStorageItem('notes', notes)
-
+    
 
     
     showModal.value = false
