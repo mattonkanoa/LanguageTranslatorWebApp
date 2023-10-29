@@ -76,6 +76,12 @@
     notes.value.splice(currentEdittedIndex.value, 1)
     setStorageItem('notes', notes)
 
+    existingNote.value = {
+        id: null,
+        text: null,
+        date: null
+    }
+    newNote.value = ""
     showModal.value = false
   }
 </script>
