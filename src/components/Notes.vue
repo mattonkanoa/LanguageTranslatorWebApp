@@ -6,6 +6,7 @@
   const showModal = ref(false)
   const newNote = ref("")
   const notes = ref([])
+  const currentEdittedIndex = ref(null)
 
   const existingNote = ref({
     id: null,
@@ -25,10 +26,7 @@
         date: getFormattedDate()
     })
 
-    setStorageItem('notes', notes)
-    
-
-    
+    setStorageItem('notes', notes)    
     showModal.value = false
     newNote.value = ""
   }
@@ -53,15 +51,15 @@
     }
   }
 
-  const toggleModal = (note) => {
+  const toggleModal = (note, index) => {
     // Check if user clicked on existing note
     if (note !== undefined) {
         newNote.value = note.text
         existingNote.value = note
-        console.log(notes.value[0])
+        currentEdittedIndex.value = index
     }
 
-    showModal.value = !showModal.value
+    showModal.value = true
   }
 
   const cancel = () => {
@@ -72,6 +70,13 @@
         text: null,
         date: null
     }
+  }
+
+  const deleteNote = () => {
+    notes.value.splice(currentEdittedIndex.value, 1)
+    setStorageItem('notes', notes)
+
+    showModal.value = false
   }
 </script>
 
@@ -86,6 +91,7 @@
       <div v-if="existingNote.id !== null" class="modal">
         <textarea v-model="newNote" name="note " id="note"></textarea>
         <button @click="saveNote()">Edit Note</button>
+        <button @click="deleteNote()">Delete Note</button>
         <button @click="cancel()">Cancel</button>
       </div>
     </div>
@@ -98,7 +104,7 @@
         <p class="message">No Exising Notes</p>
       </div>
       <div class="cards-container">
-        <div v-for="note in notes" @click="toggleModal(note)" class="card">
+        <div v-for="(note, index) in notes" @click="toggleModal(note, index)" class="card">
           <p class="main-text">{{ note.text }}</p>
           <p class="date">{{ note.date }}</p>
         </div>
